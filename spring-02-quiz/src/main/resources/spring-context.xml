@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="stringToAnswerConverter" class="com.github.steleal.quiz.dao.converter.StringToAnswerConverter"/>
+
+    <bean id="stringArrToQuestionConverter" class="com.github.steleal.quiz.dao.converter.StringArrToQuestionConverter">
+        <constructor-arg name="toAnswer" ref="stringToAnswerConverter"/>
+    </bean>
+
+    <bean id="questionDao" class="com.github.steleal.quiz.dao.QuestionDaoCsv">
+        <constructor-arg name="questionCsvResource" value="/resources/questions.csv"/>
+        <constructor-arg name="toQuestion" ref="stringArrToQuestionConverter"/>
+    </bean>
+
+    <bean id = "questionService" class="com.github.steleal.quiz.service.QuestionServiceImpl">
+        <constructor-arg name="questionDao" ref="questionDao"/>
+    </bean>
+</beans>
