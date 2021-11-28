@@ -1,5 +1,5 @@
 "ONE","How many colours has a rainbow, type a number of variant","0;0;five", "0;0;six", "1;2;seven", "0;0;eight"
-"OPEN","How many colours has a rainbow, type the number","0;2;seven", "0;2;7"
+"OPEN","How many colours has a rainbow, type the number","1;2;seven", "1;2;7"
 "FEW","What are colours included in a rainbow, specify numbers of variants separated by commas","0;0;black", "0;0;white", "1;1;red", "1;1;green"
 "FEW","What are colours included in a rainbow, specify numbers of variants separated by commas","1;2;red", "1;0;green", "1;0;yellow", "0;0;gray"
 "FEW","What are colours included in a rainbow, specify numbers of variants separated by commas","0;0;black", "0;0;white", "1;2;yellow", "0;0;none of them"

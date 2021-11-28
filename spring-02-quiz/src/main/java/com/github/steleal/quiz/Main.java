@@ -1,37 +1,43 @@
 package com.github.steleal.quiz;
 
-import com.github.steleal.quiz.domain.Answer;
+import com.github.steleal.quiz.controller.QuizController;
+import com.github.steleal.quiz.controller.RegistrationController;
+import com.github.steleal.quiz.controller.ShowResultController;
+import com.github.steleal.quiz.controller.TestController;
 import com.github.steleal.quiz.domain.Question;
+import com.github.steleal.quiz.domain.QuizResult;
+import com.github.steleal.quiz.domain.Student;
 import com.github.steleal.quiz.service.QuestionService;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+@ComponentScan
+@Configuration
+@RequiredArgsConstructor
 public class Main {
+    private final QuestionService questionService;
+    private final RegistrationController registrationController;
+    private final QuizController quizController;
+    private final ShowResultController showResultController;
+    private final TestController testController;
+
     public static void main(String[] args) {
-        try (ClassPathXmlApplicationContext context
-                     = new ClassPathXmlApplicationContext("/resources/spring-context.xml")) {
-
-            context.getBean(QuestionService.class)
-                    .getAllQuestions()
-                    .forEach(question -> System.out.println(mapToString(question)));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+        context.getBean(Main.class).run();
     }
 
-    // todo убрать во view слой
-    private static String mapToString(Question question) {
-        StringBuilder builder = new StringBuilder(question.getText());
-        List<Answer> answers = question.getAnswers();
-        for (int i = 0; i < answers.size(); i++) {
-            builder.append("\n\t")
-                    .append((i + 1))
-                    .append(". ")
-                    .append(answers.get(i).getText());
+    public void run() {
+        testController.hello();
+        List<Question> questions = questionService.getAllQuestions();
+        while (testController.hasTested()) {
+            Student student = registrationController.register();
+            QuizResult result = quizController.exam(student, questions);
+            showResultController.show(result);
         }
-        builder.append("\n");
-        return builder.toString();
+        testController.bye();
     }
 }

@@ -2,6 +2,7 @@ package com.github.steleal.quiz.service;
 
 import com.github.steleal.quiz.dao.QuestionDao;
 import com.github.steleal.quiz.domain.Question;
+import com.github.steleal.quiz.service.impl.QuestionServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

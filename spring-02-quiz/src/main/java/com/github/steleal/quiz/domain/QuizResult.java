@@ -5,8 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public class Answer {
-    private final boolean needToChoose;
+public class QuizResult {
+    private final Student student;
     private final int score;
-    private final String text;
 }
