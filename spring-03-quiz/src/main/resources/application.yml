@@ -1,0 +1,11 @@
+spring:
+  messages:
+    basename: i18n/messages
+
+# default value - en
+app.locale: ru
+
+app.question-csv-path: questions.csv
+app.quiz-score-pass: 8
+app.quiz-score-max: 10
+
