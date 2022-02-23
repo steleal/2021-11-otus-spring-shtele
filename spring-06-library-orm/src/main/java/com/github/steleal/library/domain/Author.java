@@ -1,16 +1,29 @@
 package com.github.steleal.library.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 
-import static lombok.EqualsAndHashCode.Exclude;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "authors")
 @Builder(toBuilder = true)
-@RequiredArgsConstructor
 public class Author {
-    @Exclude
-    private final long id;
-    private final String fullName;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(name = "full_name", nullable = false)
+    private String fullName;
+
 }
