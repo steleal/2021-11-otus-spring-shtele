@@ -1,4 +1,4 @@
-package com.github.steleal.library.dao.exception;
+package com.github.steleal.library.repositories.exception;
 
 public class BookNotFoundException extends RuntimeException {
     public static String ERROR_MESSAGE = "Book with id %s not found";

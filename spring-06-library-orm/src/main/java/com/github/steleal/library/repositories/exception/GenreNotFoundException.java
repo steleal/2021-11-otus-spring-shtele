@@ -1,4 +1,4 @@
-package com.github.steleal.library.dao.exception;
+package com.github.steleal.library.repositories.exception;
 
 public class GenreNotFoundException extends RuntimeException {
     public static String ERROR_MESSAGE = "Genre with id %s not found";
